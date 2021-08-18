@@ -1,0 +1,74 @@
+﻿@page
+@model LoginModel
+
+@{
+    ViewData["Title"] = "Log in";
+}
+
+
+<div class="row">
+    <div class="col">
+        <div class="float-left mt-4">
+            <img src="~/Images/login2.jpg" height="400" width="520" />
+        </div>
+        <div class="float-right">
+            <form id="account" method="post">
+                <h2 class="text-primary font-weight-bold" style="font-family:'Lucida Calligraphy'">Use a local account to log in...</h2>
+                <hr />
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Input.Email"></label>
+                    <input asp-for="Input.Email" class="form-control" />
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Input.Password"></label>
+                    <input asp-for="Input.Password" class="form-control" type="password" id="myInput" /><br />
+                    <input type="checkbox" onclick="myFunction()"> Show Password
+                    <br />
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label asp-for="Input.RememberMe">
+                            <input asp-for="Input.RememberMe" />
+                            @Html.DisplayNameFor(m => m.Input.RememberMe)
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group mt-4">
+                    <button type="submit" class="btn btn-success w-25">Sign In</button>
+                    <p class="mt-2">
+                        Not yet a registered user?
+                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl" class="text-primary" style="font-family:'Lucida Calligraphy'">
+                            Please first Register here !!!
+                        </a>
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="row mt-5">
+    <div class="col text-danger" style="background-color:#7386D5">
+        <marquee class="mt-2" direction="left">
+            Please Wear Mask Properly And Help Fight COVID-19 ... Stay Home, Stay Safe & Protect Others ...
+            &nbsp;
+            <img src="~/Images/coronavirus2.png" width="35" height="35" />
+        </marquee>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        function myFunction() {
+            var x = document.getElementById("myInput");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        }
+    </script>
+}

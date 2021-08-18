@@ -1,0 +1,60 @@
+﻿@model work_01.Models.City
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class=" breadcrumb-section">
+    <div class="container text-center">
+        <h1 class="display-4">Edit @Model.cName</h1>
+    </div>
+</div>
+<hr />
+
+<div class="row">
+    <div class="col">
+        <div id="panel"></div>
+        <div class="card rounded shadow-lg">
+            <div class="card-header shadow">
+                <div class="d-flex justify-content-end">
+                    <a asp-action="Index" asp-controller="Cities" class="btn btn-info btn-sm rounded shadow-sm">
+                        <i class="fa fa-backward"></i> Back to List
+                    </a>
+                </div>
+            </div>
+            <div class="card-body">
+                <form id="frmEdit" asp-action="Edit" asp-controller="Cities" class="float-left col-6 mt-3"
+                      data-ajax-method="Post"
+                      data-ajax="true"
+                      data-ajax-mode="replace"
+                      data-ajax-update="#panel"
+                      data-ajax-success="success">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="cId" />
+                    <div class="form-group row">
+                        <label asp-for="cName" class="col-form-label col-3">@Html.DisplayNameFor(x => x.cName)</label>
+                        <div class="col-9">
+                            <input asp-for="cName" class="form-control" />
+                            <span asp-validation-for="cName" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col">
+                            <button type="reset" class="btn btn-warning shadow-sm btn-sm"><i class="fa fa-refresh"></i> Reset</button>
+                            <button type="submit" class="btn btn-primary shadow-sm btn-sm"><i class="fa fa-save"></i> Update</button>
+                        </div>
+                    </div>
+                </form>
+                <img src="~/SliderImages/Image2.jpg" class="float-right" height="150" width="500" />
+            </div>
+        </div> 
+    </div>
+</div>
+
+@section scripts{
+
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    <script src="~/lib/ajax/dist/jquery.unobtrusive-ajax.js"></script>
+}
+
